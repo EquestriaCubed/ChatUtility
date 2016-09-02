@@ -1,0 +1,104 @@
+name: ChatUtility
+authors: [Ha3, Hepolite, SweetieBelle, Verdana]
+main: com.hepolite.chatutility.ChatUtility
+version: 1.0.1
+depend: [Herochat]
+softdepend: [VanishNoPacket, PermissionsEx]
+description: >
+             Allows messages to be sent to players via player names, channels or permissions
+permissions:
+    rawsend.to.player:
+        description: Send to player
+        default: op
+    rawsend.to.permission:
+        description: Send to permission holders
+        default: op
+    rawsend.to.channel:
+        description: Send to channel (Herochat)
+        default: op
+    channelnick.admin:
+        description: Gives access to ChannelNick moderation commands
+        children:
+            channelnick.reload: true
+            channelnick.delnick: true
+            channelnick.ooca: true
+    channelnick.user:
+        description: Gives access to basic ChannelNick commands
+        children:
+            channelnick.nick: true
+            channelnick.realname: true
+            channelnick.realnames: true
+            channelnick.ooc: true
+            channelnick.it: true
+            channelnick.ooctoggle: true
+    channelnick.nick:
+        description: Allows you to set or remove your nickname
+        default: false
+    channelnick.realname:
+        description: Allows you to show the real name that corresponds to a given nickname
+        default: false
+    channelnick.realnames:
+        description: Allows you to display the real names of all online players
+        default: false
+    channelnick.ooc:
+        description: Allows you to send a message as OOC to the focussed channel
+        default: false
+    channelnick.ooca:
+        description: Allows you to send a message as OOC to the focussed channel as an admin.
+        default: false
+    channelnick.it:
+        description: Allows you to send a world action to the focussed channel
+        default: false
+    channelnick.delnick:
+        description: Allows you to delete another players' nickname.
+        default: false
+    channelnick.reload:
+        description: Allows you to reload the plugin configuration.
+        default: false
+    channelnick.ooctoggle:
+        description: Allows you to toggle your OOC status to always talk in OOC.
+        default: false
+commands:
+    rs_player:
+        description: Send to player
+        permission: rawsend.to.player
+        usage: rs_player player message
+    rs_permission:
+        description: Send to permission holders (not permission groups!)
+        permission: rawsend.to.permission
+        usage: rs_permission permission message
+    rs_channel:
+        description: Send to channel (Herochat)
+        permission: rawsend.to.channel
+        usage: rs_channel player message
+    ChannelNick:
+        description: Management command for ChannelNick
+        usage: /ChannelNick <help|reload>
+    nick:
+        description: Set or remove your nickname
+        usage: /nick [my new nickname]
+    realname:
+        description: Show the real name that corresponds to a given nickname
+        usage: /realname [a nickname]
+    realnames:
+        description: Show the real names of all online players with a nick
+        usage: /realnames
+    ooc:
+        description: Send a message as OOC to the focussed channel
+        usage: /ooc [chat message]
+    ooca:
+        description: Allows you to send a message as OOC to the focussed channel as an admin.
+        default: /ooca [chat message]
+    it:
+        description: Send a world action to the focussed channel
+        usage: /it [chat message]
+    delnick:
+        description: Removes a player's nickname
+        usage: /delnick [player name]
+    ooctoggle:
+        description: Toggles your OOC status to always talk in OOC.
+        usage: /ooctoggle
+    chatutilityreload:
+        description: Reloads the ChatUtility plugins.
+        usage: /chatutilityreload
+#
