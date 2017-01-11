@@ -1,7 +1,7 @@
 name: ChatUtility
 authors: [Ha3, Hepolite, SweetieBelle, Verdana]
 main: com.hepolite.chatutility.ChatUtility
-version: 1.0.1
+version: $version
 depend: [Herochat]
 softdepend: [VanishNoPacket, PermissionsEx]
 description: >

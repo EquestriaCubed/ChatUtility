@@ -3,8 +3,8 @@ plugins {
 	id 'eclipse'
 }
 
-group = 'com.brohoof'
-version = '22'
+group = 'com.hepolite'
+version = '1.0.1'
 
 repositories {
 	jcenter()
