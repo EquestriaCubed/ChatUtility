@@ -10,7 +10,8 @@ public class Settings
 	public String nickMessage;
 	public String nickAddon;
 	public String nickPrefix;
-	public String adminPrefix;
+	public String adminOocPrefix;
+	public String oocPrefix;
 	public List<String> channels;
 	public List<String> blacklist;
 	public String regex;
@@ -23,8 +24,9 @@ public class Settings
 
 		nickMessage = ChatColor.translateAlternateColorCodes('&', config.getString("nickMessage"));
 		nickAddon = ChatColor.translateAlternateColorCodes('&', config.getString("nickAddon"));
-		nickPrefix = ChatColor.translateAlternateColorCodes('&', config.getString("nickprefix"));
-		adminPrefix = ChatColor.translateAlternateColorCodes('&', config.getString("adminprefix"));
+		nickPrefix = ChatColor.translateAlternateColorCodes('&', config.getString("prefix.nick"));
+		adminOocPrefix = ChatColor.translateAlternateColorCodes('&', config.getString("prefix.adminooc"));
+		oocPrefix = ChatColor.translateAlternateColorCodes('&', config.getString("prefix.ooc"));
 		channels = config.getStringList("channels");
 		blacklist = config.getStringList("blacklist");
 		regex = config.getString("regex");

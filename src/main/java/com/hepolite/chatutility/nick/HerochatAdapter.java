@@ -40,13 +40,12 @@ public class HerochatAdapter implements Listener
 			String nick = ChatUtility.getNickManager().getNick(player);
 			ChatUtility.getInstance().getLogger().info("[" + player.getName() + " is chatting as " + nick + "]");
 
-			//ChatUtility.getInstance().getLogger().info("FORMAT: " + event.getFormat());
-			// FORMAT: &9{nick}&f<{prefix}{sender}{suffix}&f> {msg}
-			// .replace("{nick}<{prefix}{sender}{suffix}", "{nick} <" + ChatUtility.getSettings().nickPrefix + nick")
-
-			event.setFormat(event.getFormat().replace("{prefix}{sender}{suffix}", getNickPrefix(player) + nick));
-			event.setFormat(event.getFormat().replace("&9{nick}&f", "&9{nick}" + ChatUtility.getSettings().nickAddon + "&f"));
-			if (event.getFormat().equals("&7[{name}] * {msg}"))
+			String eventFormat = event.getFormat();
+			if(eventFormat.equals("{default}")) {
+			    eventFormat = Herochat.getInstance().getConfig().getString("format.default");
+			}
+			event.setFormat(eventFormat.replace("{sender}", ChatUtility.getSettings().nickAddon + getNickPrefix(player) + nick));
+			if (event.getFormat().equals(Herochat.getInstance().getConfig().getString("format.emote")))
 			{
 				sendActionMessage(player, event.getMessage());
 				event.setResult(ChatResult.FAIL);
@@ -57,7 +56,7 @@ public class HerochatAdapter implements Listener
 	/** Returns the nick prefix for the given player */
 	public final static String getNickPrefix(Player player)
 	{
-		return player.hasPermission("channelnick.admin") ? ChatUtility.getSettings().adminPrefix : ChatUtility.getSettings().nickPrefix;
+		return ChatUtility.getSettings().nickPrefix;
 	}
 
 	/** Returns the active channel for the given player */
@@ -137,7 +136,7 @@ public class HerochatAdapter implements Listener
 	{
 		Channel channel = getActiveChannel(player);
 		if (getAllowNicknames(channel))
-			channel.announce(ChatColor.DARK_GRAY + "<" + ChatUtility.getPermissionsExHook().getPrefix(player) + ChatUtility.getSettings().adminPrefix + player.getName() + ChatColor.DARK_GRAY + "> [" + ChatColor.WHITE + ChatColor.ITALIC + message + ChatColor.RESET + ChatColor.DARK_GRAY + "]");
+			channel.announce(ChatColor.DARK_GRAY + "<" + ChatUtility.getPermissionsExHook().getPrefix(player) + ChatUtility.getSettings().adminOocPrefix + player.getName() + ChatColor.DARK_GRAY + "> [" + ChatColor.WHITE + ChatColor.ITALIC + message + ChatColor.RESET + ChatColor.DARK_GRAY + "]");
 		else
 			player.sendMessage(ChatUtility.getSettings().nickMessage + "You are not focused on a roleplay channel.");
 	}
