@@ -1,0 +1,20 @@
+# default config.yml
+nickMessage: '&9[ChannelNick] &f '
+nickAddon: ''
+prefix:
+  nick: '&b'
+  ooc: '&9'
+  adminooc: '&c'
+regex: '[^-a-zA-Z0-9._ ]'
+maxNickLength: 25
+channels:
+- c
+- rp
+- rp2
+- rp3
+- rp4
+blacklist:
+- admin
+- admins
+- mod
+- mods
